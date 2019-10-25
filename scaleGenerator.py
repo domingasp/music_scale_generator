@@ -36,7 +36,7 @@ class GUI:
 
         ###### Note Selection Label and OptionMenu (Dropdown select) ######
         self.noteOptionLabel = tk.Label(self.master, text = 'Note:')
-        self.noteOptionLabel.grid(row = 0, column = 1)
+        self.noteOptionLabel.grid(row = 0, column = 1, columnspan = 6)
 
         # Option menu variable - Needed for the OptionMenu to function correctly as this is what gets set
         noteOptionVar = tk.StringVar()
@@ -44,12 +44,12 @@ class GUI:
 
         # Creates the OptionMenu and adds it to the master
         self.noteSelection = tk.OptionMenu(self.master, noteOptionVar, twoOctaves[0], twoOctaves[1], twoOctaves[2], twoOctaves[3], twoOctaves[4], twoOctaves[5], twoOctaves[6], twoOctaves[7], twoOctaves[8], twoOctaves[9], twoOctaves[10], twoOctaves[11])
-        self.noteSelection.grid(row = 0, column = 2)
+        self.noteSelection.grid(row = 0, column = 7, columnspan = 6)
 
 
         ###### Scale Selection Label and OptionMenu (Dropdown select) ######
         self.scaleOptionLabel = tk.Label(self.master, text = 'Scale:')
-        self.scaleOptionLabel.grid(row = 1, column = 1)
+        self.scaleOptionLabel.grid(row = 1, column = 1, columnspan = 6)
 
         # Option menu variable - Needed for the OptionMenu to function correctly as this is what gets set
         scaleOptionVar = tk.StringVar()
@@ -57,7 +57,18 @@ class GUI:
 
         # Creates the OptionMenu and adds it to the master
         self.scaleSelection = tk.OptionMenu(self.master, scaleOptionVar, 'Major', 'Minor')
-        self.scaleSelection.grid(row = 1, column = 2)
+        self.scaleSelection.grid(row = 1, column = 7, columnspan = 6)
+
+        ###### Create the different note labels ######
+        # Store the labels in an array in order to enable changing of the appearance in the future
+        self.noteLabels = []
+
+        # Create 12 note labels which will display the desired scale to the user
+        for x in range(0, 11):
+            self.noteLabel = tk.Label(master, text = twoOctaves[x], width = 2, background = 'red')
+            self.noteLabels.append(self.noteLabel)
+
+            self.noteLabel.grid(row = 2, column = x + 1, padx = 2, pady = 2)
 
 # Runs the main application
 def main():
