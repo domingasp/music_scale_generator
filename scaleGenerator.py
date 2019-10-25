@@ -32,10 +32,32 @@ def generateScale(rootNote, scale):
 class GUI:
     def __init__(self, master):
         self.master = master
-        self.master.title("Scale Generator")
+        self.master.title('Scale Generator')
 
-        self.noteSelection = tk.OptionMenu(self.master, "C", twoOctaves[0], twoOctaves[1], twoOctaves[2], twoOctaves[3], twoOctaves[4], twoOctaves[5], twoOctaves[6])
-        self.noteSelection.grid(row = 0, column = 0)
+        ###### Note Selection Label and OptionMenu (Dropdown select) ######
+        self.noteOptionLabel = tk.Label(self.master, text = 'Note:')
+        self.noteOptionLabel.grid(row = 0, column = 1)
+
+        # Option menu variable - Needed for the OptionMenu to function correctly as this is what gets set
+        noteOptionVar = tk.StringVar()
+        noteOptionVar.set(twoOctaves[0])
+
+        # Creates the OptionMenu and adds it to the master
+        self.noteSelection = tk.OptionMenu(self.master, noteOptionVar, twoOctaves[0], twoOctaves[1], twoOctaves[2], twoOctaves[3], twoOctaves[4], twoOctaves[5], twoOctaves[6], twoOctaves[7], twoOctaves[8], twoOctaves[9], twoOctaves[10], twoOctaves[11])
+        self.noteSelection.grid(row = 0, column = 2)
+
+
+        ###### Scale Selection Label and OptionMenu (Dropdown select) ######
+        self.scaleOptionLabel = tk.Label(self.master, text = 'Scale:')
+        self.scaleOptionLabel.grid(row = 1, column = 1)
+
+        # Option menu variable - Needed for the OptionMenu to function correctly as this is what gets set
+        scaleOptionVar = tk.StringVar()
+        scaleOptionVar.set('Major')
+
+        # Creates the OptionMenu and adds it to the master
+        self.scaleSelection = tk.OptionMenu(self.master, scaleOptionVar, 'Major', 'Minor')
+        self.scaleSelection.grid(row = 1, column = 2)
 
 # Runs the main application
 def main():
